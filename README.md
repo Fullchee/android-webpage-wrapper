@@ -7,7 +7,7 @@ A minimal Android app that opens only hardcoded sites. Every other link is block
 Edit `SITES` in `app/src/main/kotlin/com/fullchee/webwrapper/Allowlist.kt`, then rebuild.
 
 ## Build and install
-1. `./build.sh` builds, copies the APK to the clipboard and reveals it in Finder (or `./gradlew assembleDebug`).
+1. `./build.sh` builds, reveals the APK in Finder and opens the Drive folder (or `./gradlew assembleDebug`).
 1. `./gradlew assembleDebug` (or Build → Build APK in Android Studio).
 2. Copy `app/build/outputs/apk/debug/webpage-wrapper.apk` to the phone.
 3. Open it on the phone and allow installs from that source.
