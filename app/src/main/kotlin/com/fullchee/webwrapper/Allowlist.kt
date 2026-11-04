@@ -7,6 +7,7 @@ data class Site(val name: String, val url: String)
 // Hardcoded on purpose: editing the list should require a rebuild.
 val SITES = listOf(
     Site("Dashboard", "https://fullchee-dashboard.pages.dev/"),
+    Site("Cloudflare", "https://dash.cloudflare.com/"),
 )
 
 private val SIGN_IN_DOMAINS = listOf(

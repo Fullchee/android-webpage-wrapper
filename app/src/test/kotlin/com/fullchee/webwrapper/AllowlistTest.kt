@@ -16,6 +16,16 @@ class AllowlistTest {
     }
 
     @Test
+    fun allowsCloudflareDashboard() {
+        assertTrue(isAllowed("https://dash.cloudflare.com/some/account?x=1"))
+    }
+
+    @Test
+    fun blocksCloudflareRootDomain() {
+        assertFalse(isAllowed("https://www.cloudflare.com/"))
+    }
+
+    @Test
     fun allowsGoogleSignIn() {
         assertTrue(isAllowed("https://accounts.google.com/o/oauth2/auth?client_id=abc"))
     }
