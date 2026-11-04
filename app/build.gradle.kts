@@ -18,3 +18,9 @@ android {
 dependencies {
     testImplementation("junit:junit:4.13.2")
 }
+
+androidComponents {
+    onVariants { variant ->
+        variant.outputs.forEach { it.outputFileName.set("webpage-wrapper.apk") }
+    }
+}
