@@ -15,3 +15,14 @@ Edit `SITES` in `app/src/main/kotlin/com/fullchee/webwrapper/Allowlist.kt`, then
 ## Test
 
 `./gradlew testDebugUnitTest`
+
+## Commands
+
+Needs JDK 21 or newer. Install with `brew install --cask temurin@25`.
+
+| Command | Does |
+| --- | --- |
+| `./gradlew testDebugUnitTest` | Run unit tests |
+| `./gradlew assembleDebug` | Build the debug APK |
+| `./gradlew installDebug` | Build and install on a connected device |
+| `./gradlew tasks` | List all tasks |
