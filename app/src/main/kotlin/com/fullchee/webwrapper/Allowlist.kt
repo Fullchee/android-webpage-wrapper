@@ -14,7 +14,7 @@ private val SIGN_IN_DOMAINS = listOf(
     "accounts.google.com",
     "accounts.youtube.com",
     "cloudflareaccess.com",
-    "challenges.cloudflare.com",
+    "cloudflare.com",
 )
 
 private val ALLOWED_DOMAINS = SITES.map { URI(it.url).host } + SIGN_IN_DOMAINS

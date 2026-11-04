@@ -21,8 +21,9 @@ class AllowlistTest {
     }
 
     @Test
-    fun blocksCloudflareRootDomain() {
-        assertFalse(isAllowed("https://www.cloudflare.com/"))
+    fun allowsAllCloudflareSubdomains() {
+        assertTrue(isAllowed("https://www.cloudflare.com/"))
+        assertTrue(isAllowed("https://api.cloudflare.com/client/v4"))
     }
 
     @Test
@@ -49,6 +50,7 @@ class AllowlistTest {
     fun blocksLookalikeDomain() {
         assertFalse(isAllowed("https://evilaccounts.google.com.attacker.net/"))
         assertFalse(isAllowed("https://notcloudflareaccess.com/"))
+        assertFalse(isAllowed("https://notcloudflare.com/"))
     }
 
     @Test
