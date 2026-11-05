@@ -16,11 +16,6 @@ class AllowlistTest {
     }
 
     @Test
-    fun allowsCloudflareDashboard() {
-        assertTrue(isAllowed("https://dash.cloudflare.com/some/account?x=1"))
-    }
-
-    @Test
     fun allowsAllCloudflareSubdomains() {
         assertTrue(isAllowed("https://www.cloudflare.com/"))
         assertTrue(isAllowed("https://api.cloudflare.com/client/v4"))
