@@ -1,0 +1,7 @@
+<resources>
+    <!-- The framework has no public DayNight.NoActionBar theme. -->
+    <style name="Theme.WebWrapper" parent="@android:style/Theme.DeviceDefault.DayNight">
+        <item name="android:windowActionBar">false</item>
+        <item name="android:windowNoTitle">true</item>
+    </style>
+</resources>
