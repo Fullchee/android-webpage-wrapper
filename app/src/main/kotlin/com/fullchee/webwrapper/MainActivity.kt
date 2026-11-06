@@ -8,6 +8,7 @@ import android.webkit.CookieManager
 import android.webkit.WebResourceRequest
 import android.webkit.WebView
 import android.webkit.WebViewClient
+import android.widget.FrameLayout
 import android.widget.Toast
 import android.window.OnBackInvokedDispatcher
 
@@ -23,18 +24,21 @@ class MainActivity : Activity() {
             // Google refuses sign-in from user agents marked as an embedded WebView ("; wv").
             settings.userAgentString = settings.userAgentString.replace("; wv", "")
             webViewClient = AllowlistClient()
-            // Target SDK 35+ draws edge to edge, so pad content clear of the system bars.
-            setOnApplyWindowInsetsListener { view, insets ->
-                val bars = insets.getInsets(WindowInsets.Type.systemBars())
-                view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
-                insets
-            }
         }
         CookieManager.getInstance().apply {
             setAcceptCookie(true)
             setAcceptThirdPartyCookies(webView, true)
         }
-        setContentView(webView)
+        // WebView ignores its own padding, so a plain container keeps it clear of the system bars.
+        setContentView(FrameLayout(this).apply {
+            addView(webView)
+            // Target SDK 35+ draws edge to edge.
+            setOnApplyWindowInsetsListener { view, insets ->
+                val bars = insets.getInsets(WindowInsets.Type.systemBars())
+                view.setPadding(bars.left, bars.top, bars.right, bars.bottom)
+                insets
+            }
+        })
         webView.loadUrl(HOME_URL)
         onBackInvokedDispatcher.registerOnBackInvokedCallback(
             OnBackInvokedDispatcher.PRIORITY_DEFAULT,
