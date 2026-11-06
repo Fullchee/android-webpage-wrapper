@@ -6,8 +6,8 @@ import org.junit.Test
 
 class AllowlistTest {
     @Test
-    fun allowsEveryHardcodedSite() {
-        SITES.forEach { assertTrue(it.url, isAllowed(it.url)) }
+    fun allowsHomeUrl() {
+        assertTrue(isAllowed(HOME_URL))
     }
 
     @Test

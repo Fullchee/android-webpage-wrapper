@@ -1,10 +1,10 @@
 # Web Wrapper
 
-A minimal Android app that opens only hardcoded sites. Every other link is blocked.
+A minimal Android app that opens `https://fullchee-dashboard.pages.dev/` full screen. Every other link is blocked.
 
-## Change the sites
+## Change the site
 
-Edit `SITES` in `app/src/main/kotlin/com/fullchee/webwrapper/Allowlist.kt`, then rebuild.
+Edit `HOME_URL` in `app/src/main/kotlin/com/fullchee/webwrapper/Allowlist.kt`, then rebuild.
 
 ## Build and install
 
