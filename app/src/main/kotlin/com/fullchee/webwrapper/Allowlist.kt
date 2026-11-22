@@ -3,7 +3,7 @@ package com.fullchee.webwrapper
 import java.net.URI
 
 // Hardcoded on purpose: changing the site should require a rebuild.
-const val HOME_URL = "https://fullchee-dashboard.pages.dev/"
+const val HOME_URL = "https://journal.fullchee.workers.dev/"
 
 private val SIGN_IN_DOMAINS = listOf(
     "accounts.google.com",

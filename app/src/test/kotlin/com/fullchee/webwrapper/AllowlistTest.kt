@@ -12,7 +12,7 @@ class AllowlistTest {
 
     @Test
     fun allowsPathsOnAllowedSite() {
-        assertTrue(isAllowed("https://fullchee-dashboard.pages.dev/some/page?x=1"))
+        assertTrue(isAllowed("https://journal.fullchee.workers.dev/some/page?x=1"))
     }
 
     @Test
@@ -56,7 +56,7 @@ class AllowlistTest {
 
     @Test
     fun blocksPlainHttp() {
-        assertFalse(isAllowed("http://fullchee-dashboard.pages.dev/"))
+        assertFalse(isAllowed("http://journal.fullchee.workers.dev/"))
     }
 
     @Test

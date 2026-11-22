@@ -1,6 +1,6 @@
 # Web Wrapper
 
-A minimal Android app that opens `https://fullchee-dashboard.pages.dev/` full screen. Every other link is blocked.
+A minimal Android app that opens `https://journal.fullchee.workers.dev/` full screen. Every other link is blocked.
 
 ## Change the site
 
