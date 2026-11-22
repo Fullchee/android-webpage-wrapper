@@ -1,9 +1,8 @@
 #!/usr/bin/env bash
-#MISE description="Build the APK and publish it as a GitHub release"
+#MISE description="Build one APK per site and publish them as a GitHub release"
 set -euo pipefail
 
 REPO="Fullchee/android-webpage-wrapper"
-APK="app/build/outputs/apk/debug/webpage-wrapper.apk"
 
 # A release tag names a commit, so uncommitted changes would ship under the wrong one.
 if [[ -n "$(git status --porcelain)" ]]; then
@@ -13,11 +12,16 @@ fi
 
 ./gradlew assembleDebug
 
+apks=(app/build/outputs/apk/*/debug/*.apk)
+
 # The time keeps tags unique when the same commit is rebuilt.
 tag="$(date +%Y-%m-%d-%H%M)"
 title="$(date '+%Y-%m-%d %H:%M') · $(git log -1 --format=%s)"
 # The active gh account may be a work account without access to this repo.
-GH_TOKEN=$(gh auth token --user Fullchee) gh release create "$tag" "$APK" \
+GH_TOKEN=$(gh auth token --user Fullchee) gh release create "$tag" "${apks[@]}" \
   --repo "$REPO" --target "$(git rev-parse HEAD)" --title "$title" --notes "Debug build of $(git rev-parse HEAD)."
 
-echo "Download on the phone: https://github.com/$REPO/releases/latest/download/webpage-wrapper.apk"
+echo "Download on the phone:"
+for apk in "${apks[@]}"; do
+  echo "  https://github.com/$REPO/releases/latest/download/$(basename "$apk")"
+done

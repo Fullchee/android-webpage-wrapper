@@ -39,7 +39,7 @@ class MainActivity : Activity() {
                 insets
             }
         })
-        webView.loadUrl(HOME_URL)
+        webView.loadUrl(BuildConfig.HOME_URL)
         onBackInvokedDispatcher.registerOnBackInvokedCallback(
             OnBackInvokedDispatcher.PRIORITY_DEFAULT,
         ) { if (webView.canGoBack()) webView.goBack() else finish() }

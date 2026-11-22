@@ -3,16 +3,17 @@ package com.fullchee.webwrapper
 import org.junit.Assert.assertFalse
 import org.junit.Assert.assertTrue
 import org.junit.Test
+import java.net.URI
 
 class AllowlistTest {
     @Test
     fun allowsHomeUrl() {
-        assertTrue(isAllowed(HOME_URL))
+        assertTrue(isAllowed(BuildConfig.HOME_URL))
     }
 
     @Test
     fun allowsPathsOnAllowedSite() {
-        assertTrue(isAllowed("https://journal.fullchee.workers.dev/some/page?x=1"))
+        assertTrue(isAllowed(URI(BuildConfig.HOME_URL).resolve("/some/page?x=1").toString()))
     }
 
     @Test
@@ -56,7 +57,7 @@ class AllowlistTest {
 
     @Test
     fun blocksPlainHttp() {
-        assertFalse(isAllowed("http://journal.fullchee.workers.dev/"))
+        assertFalse(isAllowed(BuildConfig.HOME_URL.replaceFirst("https://", "http://")))
     }
 
     @Test

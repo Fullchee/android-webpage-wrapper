@@ -2,9 +2,6 @@ package com.fullchee.webwrapper
 
 import java.net.URI
 
-// Hardcoded on purpose: changing the site should require a rebuild.
-const val HOME_URL = "https://journal.fullchee.workers.dev/"
-
 private val SIGN_IN_DOMAINS = listOf(
     "accounts.google.com",
     "accounts.youtube.com",
@@ -12,7 +9,7 @@ private val SIGN_IN_DOMAINS = listOf(
     "cloudflare.com",
 )
 
-private val ALLOWED_DOMAINS = listOf(URI(HOME_URL).host) + SIGN_IN_DOMAINS
+private val ALLOWED_DOMAINS = listOf(URI(BuildConfig.HOME_URL).host) + SIGN_IN_DOMAINS
 
 /** A host matches a domain exactly or as a subdomain, so `evil-google.com` never matches `google.com`. */
 fun isAllowed(url: String): Boolean {
