@@ -3,6 +3,7 @@ package com.fullchee.webwrapper
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.os.Bundle
+import android.util.Log
 import android.view.WindowInsets
 import android.webkit.CookieManager
 import android.webkit.WebResourceRequest
@@ -11,6 +12,8 @@ import android.webkit.WebViewClient
 import android.widget.FrameLayout
 import android.widget.Toast
 import android.window.OnBackInvokedDispatcher
+
+private const val TAG = "WebWrapper"
 
 class MainActivity : Activity() {
     private lateinit var webView: WebView
@@ -54,6 +57,7 @@ class MainActivity : Activity() {
         override fun shouldOverrideUrlLoading(view: WebView, request: WebResourceRequest): Boolean {
             val url = request.url.toString()
             if (isAllowed(url)) return false
+            Log.w(TAG, "Blocked: $url (redirect=${request.isRedirect})")
             Toast.makeText(this@MainActivity, "Blocked: ${request.url.host ?: url}", Toast.LENGTH_SHORT).show()
             return true
         }
