@@ -1,7 +1,21 @@
 #!/usr/bin/env bash
-#MISE description="Build the APK, reveal it in Finder, open the Drive folder"
+#MISE description="Build the APK and publish it as a GitHub release"
 set -euo pipefail
 
+REPO="Fullchee/android-webpage-wrapper"
+APK="app/build/outputs/apk/debug/webpage-wrapper.apk"
+
+# A release tag names a commit, so uncommitted changes would ship under the wrong one.
+if [[ -n "$(git status --porcelain)" ]]; then
+  echo "Commit or stash your changes first." >&2
+  exit 1
+fi
+
 ./gradlew assembleDebug
-open -R app/build/outputs/apk/debug/webpage-wrapper.apk
-open "https://drive.google.com/drive/u/0/folders/1uIDzHTp9rQKAxHKFArRUaK1xQXI7RNLO"
+
+tag="build-$(git rev-parse --short HEAD)"
+# The active gh account may be a work account without access to this repo.
+GH_TOKEN=$(gh auth token --user Fullchee) gh release create "$tag" "$APK" \
+  --repo "$REPO" --target "$(git rev-parse HEAD)" --title "$tag" --notes "Debug build of $(git rev-parse HEAD)."
+
+echo "Download on the phone: https://github.com/$REPO/releases/latest/download/webpage-wrapper.apk"

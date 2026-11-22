@@ -8,9 +8,9 @@ Edit `HOME_URL` in `app/src/main/kotlin/com/fullchee/webwrapper/Allowlist.kt`, t
 
 ## Build and install
 
-1. `mise run build` builds, reveals the APK in Finder and opens the Drive folder (or `./gradlew assembleDebug`).
-2. Copy `app/build/outputs/apk/debug/webpage-wrapper.apk` to the phone.
-3. Open it on the phone and allow installs from that source.
+1. Commit your changes, then run `mise run build`. It builds the APK and publishes it as a GitHub release.
+2. On the phone, download [the latest APK](https://github.com/Fullchee/android-webpage-wrapper/releases/latest/download/webpage-wrapper.apk).
+3. Open it and allow installs from that source.
 
 ## Test
 
@@ -22,7 +22,7 @@ Needs [mise](https://mise.jdx.dev). Run `mise install` to get JDK 25 (JDK 21 or 
 
 | Command | Does |
 | --- | --- |
-| `mise run build` | Build, reveal APK in Finder, open Drive folder |
+| `mise run build` | Build and publish the APK as a GitHub release |
 | `./gradlew testDebugUnitTest` | Run unit tests |
 | `./gradlew assembleDebug` | Build the debug APK |
 | `./gradlew installDebug` | Build and install on a connected device |
